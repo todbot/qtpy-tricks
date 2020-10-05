@@ -19,7 +19,7 @@ while True:
     oled.show()
     time.sleep(1.0)
 ```
-<img src="./imgs/qtpy-oled.jpg"/>
+<img width=400 src="./imgs/qtpy-oled.jpg"/>
 
 ### Disco Party on built-in Neopixel
 ```py
@@ -32,7 +32,7 @@ while True:
     pixel.fill( (randint(0,255), randint(0,255), randint(0,255) ))
     time.sleep(0.1)
 ```
-<img src="./imgs/qtpy-neodisco.gif" />
+<img width=400 src="./imgs/qtpy-neodisco.gif" />
 
 ### Output Farty Noises to DAC
 
@@ -52,7 +52,7 @@ while True:
         lasttime = time.monotonic()
         di = random.randrange(40000,80000)
 ```
-<img src="./imgs/qtpy-farty.jpg"/>
+<img width=400 src="./imgs/qtpy-farty.jpg"/>
 
 
 ### Capsense Touch to colors on built-in LED
