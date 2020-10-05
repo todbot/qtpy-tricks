@@ -1,7 +1,7 @@
 # QT Py Tricks
 
 Some things to do on a stock [Adafruit QT Py](https://adafruit.com/qtpy)
-running [CircuitPython](https://circuitpython.org) 6-beta1.
+running [CircuitPython](https://circuitpython.org) 6-beta2.
 
 (These will also work on a Trinket M0 and really just about CircuitPython-compatible board,
 but you may need to adjust some of the `board` pins)
