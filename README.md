@@ -1,17 +1,28 @@
 # QT Py Tricks
 
-Some things to do on a stock QT Py
+Some things to do on a stock [Adafruit QT Py](https://adafruit.com/qtpy)
+running [CircuitPython](https://circuitpython.org) 6-beta1.
+
+(These will also work on a Trinket M0 and really just about CircuitPython-compatible board,
+but you may need to adjust some of the `board` pins)
 
 
-### Print time on OLED display
+## Table of Contents
+
+* [Print "time" on OLED display](#print-time-on-oled-display)
+* [Disco Party on built-in Neopixel](#disco-party-on-built-in-neopixel)
+* [Output Farty Noises to DAC](#output-farty-noises-to-dac)
+* [Capsense Touch to Colors on Built-in LED](#capsense-touch-to-colors-on-built-in-led)
+* [Capsense Touch Sensor to USB keyboard](#capsense-touch-sensor-to-usb-keyboard)
+         
+
+## Print "time" on OLED display
 ```py
 import time
 import board 
 import adafruit_ssd1306
-
 i2c = board.I2C()
 oled = adafruit_ssd1306.SSD1306_I2C(128, 64, i2c)
-
 while True:
     oled.fill(0)
     oled.text( "hello world", 0,0,1)
@@ -21,7 +32,7 @@ while True:
 ```
 <img width=400 src="./imgs/qtpy-oled.jpg"/>
 
-### Disco Party on built-in Neopixel
+## Disco Party on built-in Neopixel
 ```py
 import time
 import board
@@ -34,7 +45,7 @@ while True:
 ```
 <img width=400 src="./imgs/qtpy-neodisco.gif" />
 
-### Output Farty Noises to DAC
+## Output Farty Noises to DAC
 
 ```py
 import time
@@ -54,21 +65,26 @@ while True:
 ```
 <img width=400 src="./imgs/qtpy-farty.jpg"/>
 
+([hear it in action](https://twitter.com/todbot/status/1313223090181042177))
 
-### Capsense Touch to colors on built-in LED
+
+
+## Capsense Touch to Colors on Built-in LED
 
 ```py
 import board
 from touchio import TouchIn
 import neopixel
-pixel = neopixel.NeoPixel(board.NEOPIXEL, 1, brightness=0.2, auto_write=False)
+pixel = neopixel.NeoPixel(board.NEOPIXEL, 1, brightness=0.2)
 touchA = TouchIn(board.A1)
 touchB = TouchIn(board.A2)
+print("hello")
 while True:
   pixel[0] = (int(touchA.value*255), 0, int(touchB.value*255))
 ```
+<img width=400 src="./imgs/qtpy-capsense.gif"/>
 
-### Capsense Touch sensor to USB keyboard
+## Capsense Touch Sensor to USB keyboard
 
 ```py
 import time
