@@ -13,6 +13,7 @@ but you may need to adjust some of the `board` pins)
 * [Disco Party on built-in Neopixel](#disco-party-on-built-in-neopixel)
 * [Output Farty Noises to DAC](#output-farty-noises-to-dac)
 * [Capsense Touch to Colors on Built-in LED](#capsense-touch-to-colors-on-built-in-led)
+* [Rotary Encoder to Built-in LED](#rotary-encoder-to-built-in-led)
 * [Capsense Touch Sensor to USB keyboard](#capsense-touch-sensor-to-usb-keyboard)
          
 
@@ -83,6 +84,24 @@ while True:
   pixel[0] = (int(touchA.value*255), 0, int(touchB.value*255))
 ```
 <img width=400 src="./imgs/qtpy-capsense.gif"/>
+
+## Rotary Encoder to Built-in LED
+
+```py
+import board
+import time
+import neopixel
+import rotaryio
+pixel = neopixel.NeoPixel(board.NEOPIXEL, 1, brightness=1.0)
+encoder = rotaryio.IncrementalEncoder( board.MOSI, board.MISO ) # any two pins
+while True:
+    b = (encoder.position % 32) * 8
+    print(encoder.position,b)
+    pixel.fill((0,0,b))
+    time.sleep(0.1)
+```
+<img width=400 src="./imgs/qtpy-encoder.gif"/>
+
 
 ## Capsense Touch Sensor to USB keyboard
 
