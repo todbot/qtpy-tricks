@@ -28,7 +28,7 @@ i2c = board.I2C()
 oled = adafruit_ssd1306.SSD1306_I2C(128, 64, i2c)
 while True:
     oled.fill(0)
-    oled.text( "hello world", 0,0,1)
+    oled.text( "hello world", 0,0,1) # requires 'font5x8.bin'
     oled.text("time:"+str(time.monotonic()), 0,8,1)
     oled.show()
     time.sleep(1.0)
