@@ -16,6 +16,7 @@ be sure to [use the `xattr` trick described here](https://todbot.com/blog/2020/1
 * [Output Farty Noises to DAC](#output-farty-noises-to-dac)
 * [Capsense Touch to Colors on Built-in LED](#capsense-touch-to-colors-on-built-in-led)
 * [Rotary Encoder to Built-in LED](#rotary-encoder-to-built-in-led)
+* [Fire simulation on external Neopixel strip](#fire-simulation-on-external-neopixel-strip)
 * [Capsense Touch Sensor to USB keyboard](#capsense-touch-sensor-to-usb-keyboard)
          
 
