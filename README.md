@@ -105,6 +105,29 @@ while True:
 <img width=400 src="./imgs/qtpy-encoder.gif"/>
 
 
+## Fire simulation on external Neopixel strip
+Uses Python array operations and list comprehensions for conciseness.
+
+```py
+import board
+import time
+import neopixel
+from random import randint
+# External Neopixel strip, can be on any pin
+leds = neopixel.NeoPixel(board.RX,8,brightness=0.2,auto_write=False)
+while True:
+    # reduce brightness of all pixels by (30,30,30)
+    leds[0:] = [[max(i-30,0) for i in l] for l in leds]
+    # shift LED values down by one
+    leds[1:] = leds[0:] 
+    # pick new random fire color for LED 0
+    leds[0] = (randint(150,255),randint(50,100),0) 
+    leds.show()
+    time.sleep(0.1)
+```
+<img width=400 src="./imgs/qtpy-fire.gif"/>
+
+
 ## Capsense Touch Sensor to USB keyboard
 
 ```py
