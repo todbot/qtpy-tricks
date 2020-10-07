@@ -25,7 +25,7 @@ import time
 import board 
 import adafruit_ssd1306
 i2c = board.I2C()
-oled = adafruit_ssd1306.SSD1306_I2C(128, 64, i2c)
+oled = adafruit_ssd1306.SSD1306_I2C(128, 32, i2c)
 while True:
     oled.fill(0)
     oled.text( "hello world", 0,0,1) # requires 'font5x8.bin'
