@@ -20,6 +20,7 @@ be sure to [use the `xattr` trick described here](https://todbot.com/blog/2020/1
 * [Capsense Touch to Colors on Built-in LED](#capsense-touch-to-colors-on-built-in-led)
 * [Rotary Encoder to Built-in LED](#rotary-encoder-to-built-in-led)
 * [Fire Simulation on External Neopixel Strip](#fire-simulation-on-external-neopixel-strip)
+* [Two servos with Python Class for Easing &amp; Sequencing](#two-servos-with-python-class-for-easing--sequencing
 * [Capsense Touch Sensor to USB keyboard](#capsense-touch-sensor-to-usb-keyboard)
          
 
@@ -131,6 +132,45 @@ while True:
 ```
 <img width=400 src="./imgs/qtpy-fire.gif"/>
 
+##  Two servos with Python Class for Easing & Sequencing
+
+```py
+import board
+import time
+from pulseio import PWMOut
+from adafruit_motor import servo
+from random import random
+
+servoA = servo.Servo(PWMOut(board.RX, duty_cycle=2**15, frequency=50))
+servoB = servo.Servo(PWMOut(board.TX, duty_cycle=2**15, frequency=50))
+
+class AngleSequence:
+    def __init__(self,angles,speed):
+        self.angles = angles
+        self.aindex = 0
+        self.angle = angles[0]
+        self.speed = speed
+    def next_angle(self):
+        self.aindex = (self.aindex + 1) % len(self.angles)
+    def update(self):
+        new_angle = self.angles[self.aindex]
+        self.angle += (new_angle - self.angle) * self.speed  # simple easing
+        return self.angle
+
+seqA = AngleSequence( [90,70,90,90,90,90,60,80,100], 0.1) # set speed to taste
+seqB = AngleSequence( [90,90,90,80,70,90,120], 0.1) # set angles for desired animation
+
+lasttime = time.monotonic()
+while True:
+    if time.monotonic() - lasttime > (0.2 + random()*4.0  ):  # creepy random timing
+        lasttime = time.monotonic()
+        seqA.next_angle() # go to next angle in list
+        seqB.next_angle()
+    servoA.angle = seqA.update() # get updated (eased) servo angle
+    servoB.angle = seqB.update()
+    time.sleep(0.02) # wait a bit, note this affects 'speed'
+```
+<img width=400 src="./imgs/qtpy-servoeye.gif"/>
 
 ## Capsense Touch Sensor to USB keyboard
 
