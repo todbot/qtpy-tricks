@@ -20,7 +20,7 @@ be sure to [use the `xattr` trick described here](https://todbot.com/blog/2020/1
 * [Capsense Touch to Colors on Built-in LED](#capsense-touch-to-colors-on-built-in-led)
 * [Rotary Encoder to Built-in LED](#rotary-encoder-to-built-in-led)
 * [Fire Simulation on External Neopixel Strip](#fire-simulation-on-external-neopixel-strip)
-* [Two servos with Python Class for Easing &amp; Sequencing](#two-servos-with-python-class-for-easing--sequencing
+* [Two servos with Python Class for Easing / Sequencing](#two-servos-with-python-class-for-easing--sequencing
 * [Capsense Touch Sensor to USB keyboard](#capsense-touch-sensor-to-usb-keyboard)
          
 
@@ -132,7 +132,7 @@ while True:
 ```
 <img width=400 src="./imgs/qtpy-fire.gif"/>
 
-##  Two servos with Python Class for Easing & Sequencing
+##  Two servos with Python Class for Easing / Sequencing
 
 ```py
 import board
