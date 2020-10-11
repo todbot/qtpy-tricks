@@ -21,6 +21,7 @@ be sure to [use the `xattr` trick described here](https://todbot.com/blog/2020/1
 * [Rotary Encoder to Built-in LED](#rotary-encoder-to-built-in-led)
 * [Fire Simulation on External Neopixel Strip](#fire-simulation-on-external-neopixel-strip)
 * [Two servos with Python Class for Easing / Sequencing](#two-servos-with-python-class-for-easing--sequencing)
+* [Get Size of Device's Flash Disk](#get-size-of-devices-flash-disk)
 * [Capsense Touch Sensor to USB keyboard](#capsense-touch-sensor-to-usb-keyboard)
          
 
@@ -171,6 +172,17 @@ while True:
     time.sleep(0.02) # wait a bit, note this affects 'speed'
 ```
 <img width=400 src="./imgs/qtpy-servoeye.gif"/>
+
+
+## Get Size of Device's Flash Disk
+```py
+import os
+print("\nHello World!")
+fs_stat = os.statvfs('/')
+print("Disk size in MB", fs_stat[0] * fs_stat[3] / 1024 / 1024)
+while True: pass
+```
+<img width=400 src="./imgs/qtpy-flashsize-2MB.png"/>
 
 ## Capsense Touch Sensor to USB keyboard
 
