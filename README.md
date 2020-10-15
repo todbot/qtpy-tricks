@@ -21,6 +21,7 @@ be sure to [use the `xattr` trick described here](https://todbot.com/blog/2020/1
 * [Rotary Encoder to Built-in LED](#rotary-encoder-to-built-in-led)
 * [Fire Simulation on External Neopixel Strip](#fire-simulation-on-external-neopixel-strip)
 * [Two servos with Python Class for Easing / Sequencing](#two-servos-with-python-class-for-easing--sequencing)
+* [Spooky Eyes with Dual SSD1306 OLED displays](#spooky-eyes-with-dual-ssd1306-oled-displays)
 * [Get Size of Device's Flash Disk](#get-size-of-devices-flash-disk)
 * [Capsense Touch Sensor to USB keyboard](#capsense-touch-sensor-to-usb-keyboard)
          
@@ -174,15 +175,38 @@ while True:
 <img width=400 src="./imgs/qtpy-servoeye.gif"/>
 
 
+## Spooky Eyes with Dual SSD1306 OLED displays
+Displays are at same address, so code can be much simpler
+```py
+import time
+import board 
+import random
+import adafruit_ssd1306 # requires: adafruit_bus_device, adafruit_framebuf
+i2c = board.I2C()
+oled = adafruit_ssd1306.SSD1306_I2C(width=128, height=64, i2c=i2c)
+i=0; inc=30
+while True:
+    oled.fill(0)
+    for d in (31,30,14,12,10,8):  # various diameters
+        oled.circle( 64+i,32, d,1)
+    i = random.randint(-30,30)
+    oled.show()
+    time.sleep( 0.1 + random.random() )
+```
+<img width=475 src="./imgs/qtpy-oledeyes.gif" />
+
+
 ## Get Size of Device's Flash Disk
+see: https://circuitpython.readthedocs.io/en/latest/shared-bindings/os/index.html#os.statvfs
 ```py
 import os
 print("\nHello World!")
-fs_stat = os.statvfs('/')
+fs_stat = os.statvfs('/') 
 print("Disk size in MB", fs_stat[0] * fs_stat[3] / 1024 / 1024)
 while True: pass
 ```
 <img width=400 src="./imgs/qtpy-flashsize-2MB.png"/>
+
 
 ## Capsense Touch Sensor to USB keyboard
 
