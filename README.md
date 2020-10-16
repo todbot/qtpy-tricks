@@ -22,6 +22,7 @@ be sure to [use the `xattr` trick described here](https://todbot.com/blog/2020/1
 * [Fire Simulation on External Neopixel Strip](#fire-simulation-on-external-neopixel-strip)
 * [Two servos with Python Class for Easing / Sequencing](#two-servos-with-python-class-for-easing--sequencing)
 * [Spooky Eyes with Dual SSD1306 OLED displays](#spooky-eyes-with-dual-ssd1306-oled-displays)
+* [Use Capsense as Proximity Detector to Make Spooopy Ghost](#use-capsense-as-proximity-detector-to-make-spooopy-ghost)
 * [Get Size of Device's Flash Disk](#get-size-of-devices-flash-disk)
 * [Capsense Touch Sensor to USB keyboard](#capsense-touch-sensor-to-usb-keyboard)
          
@@ -196,8 +197,37 @@ while True:
 <img width=475 src="./imgs/qtpy-oledeyes.gif" />
 
 
+## Use Capsense as Proximity Detector to Make Spooopy Ghost
+Computing the difference between current touch raw value anda baseline minimum
+provides a kind of proximity detector, if your antenna is big enough.
+
+```py
+import time
+import board
+import digitalio
+import touchio
+from pulseio import PWMOut
+from adafruit_motor import servo
+
+touchA = touchio.TouchIn(board.A2)
+servoA = servo.Servo(PWMOut(board.RX, duty_cycle=2**15, frequency=50))
+touch_min = touchA.raw_value  # baseline for proximity
+servo_pos_last = 160
+
+while True:
+    touch_val = touchA.raw_value
+    # get proximity value, set within servo bounds (30-160)
+    servo_pos = 160 - min(160, max(30, (touch_val-touch_min))) 
+    servo_pos_last += (servo_pos - servo_pos_last) * 0.01  # easing/smoothing
+    servoA.angle = servo_pos_last
+```
+
+<img width=400 src="./imgs/qtpy-capsense-ghost.gif" />
+
+
 ## Get Size of Device's Flash Disk
-see: https://circuitpython.readthedocs.io/en/latest/shared-bindings/os/index.html#os.statvfs
+see [`os.statvfs()` docs](https://circuitpython.readthedocs.io/en/latest/shared-bindings/os/index.html#os.statvfs)
+
 ```py
 import os
 print("\nHello World!")
@@ -209,7 +239,6 @@ while True: pass
 
 
 ## Capsense Touch Sensor to USB keyboard
-
 ```py
 import time
 import board 
@@ -233,3 +262,11 @@ while True:
     time.sleep(0.2)
 ```
 
+***
+
+# Really Helpful CircuitPython Links
+
+- https://circuitpython.readthedocs.io/projects/bundle/en/latest/drivers.html
+- https://circuitpython.readthedocs.io/en/latest/shared-bindings/support_matrix.html
+- https://learn.adafruit.com/circuitpython-essentials/circuitpython-essentials
+- https://learn.adafruit.com/welcome-to-circuitpython/overview
