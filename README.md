@@ -232,7 +232,7 @@ see [`os.statvfs()` docs](https://circuitpython.readthedocs.io/en/latest/shared-
 import os
 print("\nHello World!")
 fs_stat = os.statvfs('/') 
-print("Disk size in MB", fs_stat[0] * fs_stat[3] / 1024 / 1024)
+print("Disk size in MB", fs_stat[0] * fs_stat[2] / 1024 / 1024)
 while True: pass
 ```
 <img width=400 src="./imgs/qtpy-flashsize-2MB.png"/>
