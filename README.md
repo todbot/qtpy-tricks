@@ -215,9 +215,9 @@ touch_min = touchA.raw_value  # baseline for proximity
 servo_pos_last = 160
 
 while True:
-    touch_val = touchA.raw_value
     # get proximity value, set within servo bounds (30-160)
-    servo_pos = 160 - min(160, max(30, (touch_val-touch_min))) 
+    proximity_val = (touchA.raw_value - touch_min)
+    servo_pos = 160 - min(160, max(30, proximity_val))
     servo_pos_last += (servo_pos - servo_pos_last) * 0.01  # easing/smoothing
     servoA.angle = servo_pos_last
 ```
