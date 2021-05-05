@@ -3,6 +3,7 @@
 Some things to do on a stock [Adafruit QT Py](https://adafruit.com/qtpy)
 running [CircuitPython](https://circuitpython.org) 6.
 This list is mostly to help me remmeber how to do things in CircuitPython.
+Fore more general [CircuitPython tricks](https://github.com/todbot/circuitpython-tricks), check out my [CircuitPython Tricks page](https://github.com/todbot/circuitpython-tricks).
 
 These code snippets will also work on a Trinket M0 and really just about
 CircuitPython-compatible board, but you may need to adjust some of the `board` pins.
