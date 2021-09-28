@@ -29,6 +29,9 @@ be sure to [use the `xattr` trick described here](https://todbot.com/blog/2020/1
          
 
 ## Print "time" on OLED display
+
+[Note: as of CircuitPython 7, this only works on QTPy RP2040, not QTPy M0 or QTPY M0 Haxpress]
+
 ```py
 import time
 import board 
@@ -178,7 +181,11 @@ while True:
 
 
 ## Spooky Eyes with Dual SSD1306 OLED displays
+
 Displays are at same address, so code can be much simpler
+
+[Note: as of CircuitPython 7, this only works on QTPy RP2040, not QTPy M0 or QTPY M0 Haxpress]
+
 ```py
 import time
 import board 
