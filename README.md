@@ -12,6 +12,7 @@ Notes:
 - You will need to copy needed libraries from the [CircuitPython libraries bundle](https://circuitpython.org/libraries) to your CIRCUITPY drive
 - When copying files to QT Py or Trinket M0, and you're on a Mac,
 be sure to [use the `xattr` trick described here](https://todbot.com/blog/2020/10/03/prevent-annoying-mac-_-files-being-created-on-circuitpy/) to save flash space
+- Or, just use [`circup`](https://learn.adafruit.com/keep-your-circuitpython-libraries-on-devices-up-to-date-with-circup/install-circup) to install libraries. It's very nice! (on Mac, do `pip3 install circup`)
 
 ## Table of Contents
 
