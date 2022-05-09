@@ -138,7 +138,23 @@ while True:
     leds.show()
     time.sleep(0.1)
 ```
+
 <img width=400 src="./imgs/qtpy-fire.gif"/>
+
+If you want it "flipped", so the fire goes from the top LED down to LED 0:
+
+```py
+import time, board, neopixel
+from random import randint
+leds = neopixel.NeoPixel(board.RX,8,brightness=0.2,auto_write=False)
+while True:
+    leds[:] = [[max(i-30,0) for i in l] for l in leds] # reduce brightness of all pixels by (30,30,30)
+    leds[0:-1] = leds[1:]                              # shift LED values down by one
+    leds[-1] = (randint(150,255),randint(50,100),0)    # pick new random fire color for LED N
+    leds.show()
+    time.sleep(0.1)
+```
+
 
 ##  Two servos with Python Class for Easing / Sequencing
 
