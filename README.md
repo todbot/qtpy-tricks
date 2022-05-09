@@ -119,6 +119,9 @@ while True:
 
 
 ## Fire Simulation on External Neopixel Strip
+
+<img width=400 src="./imgs/qtpy-fire.gif"/>
+
 Uses Python array operations and list comprehensions for conciseness.
 
 ```py
@@ -138,8 +141,6 @@ while True:
     leds.show()
     time.sleep(0.1)
 ```
-
-<img width=400 src="./imgs/qtpy-fire.gif"/>
 
 If you want it "flipped", so the fire goes from the top LED down to LED 0:
 
