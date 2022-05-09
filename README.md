@@ -130,8 +130,8 @@ from random import randint
 leds = neopixel.NeoPixel(board.RX,8,brightness=0.2,auto_write=False)
 while True:
     # reduce brightness of all pixels by (30,30,30)
-    leds[0:] = [[max(i-30,0) for i in l] for l in leds]
-    # shift LED values down by one
+    leds[:] = [[max(i-30,0) for i in l] for l in leds]
+    # shift LED values up by one (0->1, 1->2, etc)
     leds[1:] = leds[0:-1] # '-1' means len-1 here
     # pick new random fire color for LED 0
     leds[0] = (randint(150,255),randint(50,100),0) 
